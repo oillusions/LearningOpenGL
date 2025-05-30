@@ -74,7 +74,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>C:\libs\glfw-3.4\bin\WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)\include\stb\include;$(ProjectDir)\include\glad\include;$(ProjectDir)\include;C:\libs\glfw-3.4\include</IncludePath>
+    <IncludePath>$(ProjectDir)\include\stb\include;$(ProjectDir)\include\glad\include;$(ProjectDir)\include;C:\libs\glfw-3.4\include;$(ProjectDir)\include\glm</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>C:\libs\glfw-3.4\bin\WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\libs\glfw-3.4\include;$(ProjectDir)\include\stb\include;$(ProjectDir)\include\glad\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,6 +135,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -142,6 +147,16 @@
     <ClInclude Include="include\include\glad\glad.h" />
     <ClInclude Include="include\include\KHR\khrplatform.h" />
     <ClInclude Include="include\stb\include\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shader\default_fragment.shader" />
+    <None Include="assets\shader\default_vertex.shader" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\awesomeface.png" />
+    <Image Include="assets\textures\container.jpg" />
+    <Image Include="assets\textures\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -34,6 +34,15 @@
     <Filter Include="include\stb\include">
       <UniqueIdentifier>{8ec96fa1-45c7-43f5-801e-19b8afd7cb53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{41b229fa-6e43-49a0-967f-3e0ea3c42174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\textures">
+      <UniqueIdentifier>{18f18e78-5eb8-438a-b5d7-c708775bacba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shader">
+      <UniqueIdentifier>{fd6dce8b-4263-4cf4-bbba-83c563f2b1b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,5 +65,25 @@
     <ClInclude Include="include\stb\include\stb_image.h">
       <Filter>include\stb\include</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="assets\shader\default_fragment.shader">
+      <Filter>assets\shader</Filter>
+    </None>
+    <None Include="assets\shader\default_vertex.shader">
+      <Filter>assets\shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\container.jpg">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\wall.jpg">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\awesomeface.png">
+      <Filter>assets\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{8dd84ad8-4025-486c-ac9b-9faceba0ffac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\glad">
+      <UniqueIdentifier>{2057cb8d-4605-42b3-8b43-f673e3d2e336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\glad\include">
+      <UniqueIdentifier>{dc966913-b1d0-4da9-8f2b-4c479dc70b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\glad\include\glad">
+      <UniqueIdentifier>{69447877-7913-4192-bb30-e42e318d3b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\glad\include\KHR">
+      <UniqueIdentifier>{af8a2f09-720e-43ff-be7b-a1278f4d75b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\stb">
+      <UniqueIdentifier>{49e10a31-0cec-429d-93b4-d1d2b745b0ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\stb\include">
+      <UniqueIdentifier>{8ec96fa1-45c7-43f5-801e-19b8afd7cb53}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="include\glad\src\glad.c">
+      <Filter>include\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="include\stb\src\stb_image.cpp">
+      <Filter>include\stb</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\include\glad\glad.h">
+      <Filter>include\glad\include\glad</Filter>
+    </ClInclude>
+    <ClInclude Include="include\include\KHR\khrplatform.h">
+      <Filter>include\glad\include\KHR</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stb\include\stb_image.h">
+      <Filter>include\stb\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

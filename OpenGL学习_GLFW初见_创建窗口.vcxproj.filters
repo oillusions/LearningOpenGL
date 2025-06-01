@@ -95,6 +95,7 @@
     <None Include="assets\shader\default_vertex.shader">
       <Filter>assets\shader</Filter>
     </None>
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\container.jpg">

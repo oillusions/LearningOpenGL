@@ -1,11 +1,4 @@
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <stb_image.h>
-
-using namespace std;
+#include <GLInclude.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -22,7 +15,7 @@ void processInput(GLFWwindow* window)
 	}
 }
 
-char *LoadShaderCode(string shaderName) {
+char* LoadShaderCode(string shaderName) {
 	ifstream tmpIFile("assets/shader/" + shaderName + ".shader");
 	if (!tmpIFile.is_open()) {
 		cout << "无法加载着色器文件" << endl;
@@ -31,11 +24,11 @@ char *LoadShaderCode(string shaderName) {
 	stringstream tmpShaderStream;
 	tmpShaderStream << tmpIFile.rdbuf();
 	tmpIFile.close();
-	string tmpStr = tmpShaderStream.str();
-	char* data = new char[tmpStr.size()+ 2];
+	string str = tmpShaderStream.str();
 	cout << "加载着色器: " << shaderName << endl;
-	memcpy(data, tmpStr.c_str(), tmpStr.size());
-	data[tmpStr.size()] = '\0';
+	char* data = new char[str.size() + 2];
+	memcpy(data, str.c_str(), str.size());
+	data[str.size()] = '\0';
 	return data;
 }
 
@@ -62,12 +55,14 @@ int main()
 	glViewport(0, 0, 800, 600); // 设置视口大小
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); // 注册事件
+	glEnable(GL_DEPTH_TEST);
 
 	char *vertexShaderSource, *fragmentShaderSource;
 	vertexShaderSource = LoadShaderCode("default_vertex");
 	fragmentShaderSource = LoadShaderCode("default_fragment");
 
-	unsigned int vao, vbo, cbo, tbo, ebo, texture_wall, texture_awesomeface, vertexShader, fragmentShader, shaderProgram;
+	mat4 tran = mat4(1.0f);
+	unsigned int vao, vbo, cbo, tbo, ebo, texture_wall, texture_awesomeface, tranMatrix, vertexShader, fragmentShader, shaderProgram;
 	int wall_width, wall_height, wall_nrChannels;
 	int awesomeface_width, awesomeface_height, awesomeface_nrChannels;
 	int success;
@@ -118,6 +113,9 @@ int main()
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+	glUseProgram(shaderProgram);
+	tranMatrix = glGetUniformLocation(shaderProgram, "tranMatrix");
+
 	float vertices[] = {
 		-1.0f, 1.0f, 0.0f,
 		1.0f, 1.0f, 0.0f,
@@ -164,7 +162,7 @@ int main()
 
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture_awesomeface);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, awesomeface_width, awesomeface_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, awesomeface_imgdata);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, awesomeface_width, awesomeface_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, awesomeface_imgdata);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glUseProgram(shaderProgram);
@@ -184,26 +182,42 @@ int main()
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(2);
 
+	mat4 perspectiveMatrix = perspective(radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+	tran = tran * perspectiveMatrix;
+	tran = scale(tran, vec3(0.5f, 0.5f, 1.0f));
+	tran = translate(tran, vec3(0, -1, -2));
+	tran = rotate(tran, radians(45.0f), vec3(-1.0f, 0.0f, 0.0f));
+
 	stbi_image_free(wall_imgdata);
 	stbi_image_free(awesomeface_imgdata);
 
+	float x = 0;
+
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		x += 0.01;
+		if (x >= 4) {
+			x = -4;
+		}
+
+		glUniformMatrix4fv(tranMatrix, 1, GL_FALSE, value_ptr(translate(tran, vec3(x, 0, 0))));
 
 		glUseProgram(shaderProgram);  //使用着色器程序
 		glBindVertexArray(vao); //绑定顶点数组
 		glDrawElements(GL_TRIANGLES, sizeof(indices)/ sizeof(int), GL_UNSIGNED_INT, 0);
+		
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		//glBindVertexArray(0);
+		//glBindVertexArray(0); 
 
 		glfwSwapBuffers(window); //交换缓冲区
 		glfwPollEvents();  //发放事件
 	}
 
-	glfwTerminate();
 	delete[] vertexShaderSource;
 	delete[] fragmentShaderSource;
+
+	glfwTerminate();
 	return 0;
 }
 

@@ -74,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>C:\libs\glfw-3.4\bin\WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)\include\stb\include;$(ProjectDir)\include\glad\include;$(ProjectDir)\include;C:\libs\glfw-3.4\include;$(ProjectDir)\include\glm</IncludePath>
+    <IncludePath>$(ProjectDir)\include\stb\include;$(ProjectDir)\include\glad\include;$(ProjectDir)\include;C:\libs\glfw-3.4\include;$(ProjectDir)\include\rs\include;$(ProjectDir)\include\glm</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>C:\libs\glfw-3.4\bin\WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
@@ -140,12 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\glad\src\glad.c" />
+    <ClCompile Include="include\rs\src\Shader.cpp" />
+    <ClCompile Include="include\rs\src\ShaderProgram.cpp" />
     <ClCompile Include="include\stb\src\stb_image.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GLInclude.h" />
     <ClInclude Include="include\include\glad\glad.h" />
     <ClInclude Include="include\include\KHR\khrplatform.h" />
+    <ClInclude Include="include\rs\include\Shader.h" />
+    <ClInclude Include="include\rs\include\ShaderProgram.h" />
     <ClInclude Include="include\stb\include\stb_image.h" />
   </ItemGroup>
   <ItemGroup>

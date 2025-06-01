@@ -43,6 +43,12 @@
     <Filter Include="assets\shader">
       <UniqueIdentifier>{fd6dce8b-4263-4cf4-bbba-83c563f2b1b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\rs">
+      <UniqueIdentifier>{44a057e1-6c4d-4dee-8e50-ed4c03a92481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\rs\include">
+      <UniqueIdentifier>{a71c9435-23f7-46e7-a202-a2373b4c7912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +60,12 @@
     <ClCompile Include="include\stb\src\stb_image.cpp">
       <Filter>include\stb</Filter>
     </ClCompile>
+    <ClCompile Include="include\rs\src\Shader.cpp">
+      <Filter>include\rs</Filter>
+    </ClCompile>
+    <ClCompile Include="include\rs\src\ShaderProgram.cpp">
+      <Filter>include\rs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\include\glad\glad.h">
@@ -64,6 +76,15 @@
     </ClInclude>
     <ClInclude Include="include\stb\include\stb_image.h">
       <Filter>include\stb\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rs\include\Shader.h">
+      <Filter>include\rs\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rs\include\ShaderProgram.h">
+      <Filter>include\rs\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GLInclude.h">
+      <Filter>include\rs\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
